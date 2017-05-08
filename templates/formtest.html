@@ -1,0 +1,228 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+    <title> Test filter </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Macondo" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Rubik+Mono+One" rel="stylesheet">
+
+    
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/form.css">
+    <link rel="stylesheet" type="text/css" href="../css/footer.css">
+    <link rel="stylesheet" type="text/css" href="../css/menu.css">
+    <link rel="stylesheet" type="text/css" href="../css/searchBar.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <div class="pageWrap">
+        <!-- Horizontal Menu of the web -->
+    <ul id="menu">
+        <li>
+            <a class="active" href="home.html"><span class="glyphicon glyphicon-home"></span></a>
+        </li>
+        <li> <a href="#"> News </a> </li>
+        <li> <a href="pivottable.html"> Pivot Table </a> </li>
+        <li> <a class="selected" href="form.html"> Form </a> </li>
+        <li class="dropbtn">
+            <a href="#"> Menu </a>
+            <div class="dropdown-content">
+                <a href="#"> Menu 1 </a>
+                <a href="#"> Menu 2 </a>
+                <a href="#"> Menu 3 </a>
+            </div>
+        </li>
+
+        <li class="ex" style="float:right"><a class="active" href="#about">Contact</a></li>
+    </ul>
+    <!-- Ending menu of the  web -->
+
+
+    <div class="imageCenter">
+        <img src="../images/form.png" alt="Form" width="200px" height="200px">
+        <h3> Pivot Table Form </h3>
+    </div>
+    <form id="form1" method="POST" action="/pivottable.html">
+        <div style="display: flex; justify-content: center">
+            <div class="formPivot" style="position: relative; display: inline-block;">
+                <fieldset>
+                    <legend><span class="number">1</span> Filter Target </legend>
+                    <label> Region </label>
+                        <select id="region" name="region">
+                            <option value = "1"> East Asia and Pacific </option>
+                            <option value = "2"> Middle East and North Africa </option>
+                            <option value = "3"> Sub-Saharan Africa </option>
+                            <option value = "4"> Latin America and Caribbean </option>
+                            <option value = "5"> East Asia and Pacific </option>
+                            <option value = "6"> South Asia </option>
+                            <option value = "7"> All Countries </option>
+                        </select>
+                        <label> Income class </label>
+                        <select id="incomeClass" name="incomeClass">
+                            <option value = "1"> Upper middle income </option>
+                            <option value = "2"> Lower middle income </option>
+                            <option value = "3"> Low income </option>
+                            <option value = "4"> High income </option>
+                            <option value = "5"> All Class </option>
+                        </select>
+                        <label> Country </label>
+                        <input id = "countryInput" onkeyup="matchInput()" class="required" type="text" name="country" placeholder="Enter the country *">
+                </fieldset>
+                <div class="wrapButtonNext">
+                <button class="buttonNext" type="button" onClick="showHiddenPivot(0)"> 
+                <span class="glyphicon glyphicon-chevron-right"></span>
+                </button>
+                </div>
+                <div class="searchBarWrapper">
+                    <div class="searchBar">
+                        <div class="headerSearchBar">
+                            <p> Match Result <span class="glyphicon glyphicon-search"></span> </p>
+                        </div> 
+                        <ul id="resultInput"> 
+                            <li> <a type="button"> Viet Nam </a> </li>
+                            <li> <a type="button"> Monaco </a> </li>
+                            <li> <a type="button"> Australia </a> </li>
+                            <li> <a type="button"> Haiz</a> </li>
+                        </ul>
+                    </div>
+
+                </div>  
+            </div>
+
+            <div class="formPivot" style="display: none; position: relative;">
+                <fieldset>
+                    <legend><span class="number">2</span> Maximum Salary </legend>
+                    <label> Max Salary </label>
+                    <input class="required"  type="text" name="maxSalary" placeholder="Input the max Salary *">
+                </fieldset>
+                <div class="wrapButtonNext">
+                <button class="buttonNext" type="button" onClick="showHiddenPivot(1)"> 
+                <span class="glyphicon glyphicon-chevron-right"></span>
+                </button>
+                </div>
+
+            </div>
+        </div>
+        <div id="submitButton" style="clear:both; width: 50%; margin: 0 auto; display: none;">
+            <input type="submit" value="Generate Pivot Table">
+        </div>
+
+    </form>
+    </div>
+
+    <div id="test"> </div>
+
+    <!-- Footer of the web page -->
+    <div id="footer">
+        <div class="footerWrap">
+            <div class="footerMenu">
+                <table border="0">
+                    <tbody>
+                        <tr>
+                            <th> Group info </th>
+                            <th> Reference </th>
+                            <th> General </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <ol>
+                                    <li> Tuong Pham - 849323 </li>
+                                    <li> Hasibulshamim Anik - 787496 </li>
+                                    <li> Joseph Arnaud - 759845 </li>
+                                </ol>
+                            </td>
+                            <td>
+                                <ol>
+                                    <li> Stack Overflow </li>
+                                    <li> W3Schools </li>
+                                    <li> AdobeColor </li>
+                                </ol>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- Ending footer -->
+    <script>
+        function showHiddenPivot(indexForm) {
+            // Check if all the required inputs are filled 
+
+            var i = 0;
+            var pivotForms = document.getElementsByClassName("formPivot");
+
+            var requiredInput = pivotForms[indexForm].getElementsByClassName("required");
+            for (j = 0; j < requiredInput.length; j++){
+                var valueInput = requiredInput[j].value;
+                if (valueInput == ''){
+                    nameInput = requiredInput[j].name;
+                    alert("The field " + nameInput + " is not entered. Please try again!");
+                    return;
+                }
+            }
+    
+            if (indexForm == pivotForms.length - 1) {
+                document.getElementById("submitButton").style.display = "block";
+                return;
+            }
+
+            pivotForms[indexForm + 1].style.display = "inline-block";
+        }
+
+
+        function exitSearchBar(){
+            document.getElementsByClassName("searchBar")[0].style.display = "none";
+        } 
+
+
+        // Find the matched country for the input 
+        function matchInput(){
+            var input, filter, ul, li, a, i;
+            input = document.getElementById("countryInput");
+
+            if (input.value.length == 0){
+                exitSearchBar();
+                return;
+            }
+
+            document.getElementsByClassName("searchBar")[0].style.display = "block";
+            filter = input.value.toUpperCase();
+            ul = document.getElementById("resultInput");
+            li = ul.getElementsByTagName("li");
+
+            for (i = 0; i < li.length; i++) {
+                a = li[i].getElementsByTagName("a")[0];
+                if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    li[i].style.display = "";
+                } else {
+                    li[i].style.display = "none ";
+                }
+            }
+        }
+
+        var resultInput = document.getElementById("resultInput");
+        var lists = resultInput.getElementsByTagName("li");
+        //document.getElementById("test").innerHTML = lists.length;
+        for (i = 0; i < lists.length; i++){
+            var a = lists[i].getElementsByTagName("a")[0];
+            a.addEventListener('click', function(event){
+                document.getElementById("countryInput").value = event.target.innerHTML.trim();
+                exitSearchBar();
+            });
+        }
+
+    </script>
+</body>
+
+</html>

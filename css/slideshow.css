@@ -1,0 +1,43 @@
+#bubblechart {
+    height: 550px;
+
+}
+
+
+.chartWrapper {
+    position: relative;
+    padding: 10px 20px;
+    margin: auto;
+    text-align: center;
+    width: 100%;
+    height: 600px;
+}
+
+
+.buttonSlide {
+    position: relative;
+    margin: 20px;
+    display: inline-block;
+    padding: 20px;
+    outline: none;
+    min-width: 100px;
+    border-radius: 5px;
+    background: white;
+    color: #26AAE8;
+    border: 1px solid #3B2DE8;
+}
+
+.chartWrapper .buttonSlideWrapper {
+    position: relative;
+    right: 0;
+    bottom: -20;
+    display: inline-block;
+}
+
+.buttonSlide:hover {
+    background: #94CAE8;
+}
+
+.chartWrapper .buttonActive {
+    background: #E2E2E2;
+}

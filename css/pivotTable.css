@@ -1,0 +1,101 @@
+#pivotTable {
+    display: block;
+    width: 80%;
+    margin: 18px auto;
+}
+
+#pivotTable table{
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+#pivotTable table tbody{
+    border-left: 1px solid #d1d2d3;
+}
+
+#pivotTable table thead th {
+    color: #D5DDE5;
+    background: #1b1e24;
+    border-bottom: 5px solid #9ea7af;
+    border-right: 1px solid #343a45;
+    font-size: 16px;
+    font-weight: 100;
+    padding: 10px;
+    position: relative;
+    text-align: center;
+}
+
+#pivotTable table thead th.ascending,
+#pivotTable table thead th.descending {
+    color: #E8457A;
+}
+
+#pivotTable table tbody tr{
+    border-bottom: 1px solid #d1d2d3;
+    font-size: 14px;
+    color: #564534;
+}
+
+#pivotTable table tbody td {
+    border-right: 1px solid #d1d2d3;
+    padding: 8px 10px;
+}
+
+
+#pivotTable tbody tr:nth-child(odd){
+    background: #ebebeb;
+}
+
+#pivotTable table tbody tr:hover{
+    background-color: #858391;
+}
+#pivotTable table th .sortSign {
+    position: absolute;
+    bottom: 0;
+    left: 45%;
+    color: #b2a6b6;
+}
+
+.toolsTable {
+    position: relative;
+    display: inline-block;
+    margin: 20px 0 20px 0;
+    font-size: 18px;
+    color: #a2a2a2;
+    border: 1px solid #41AAFF;
+    background: #ebebeb;
+    border-radius: 5px;
+    border-width: 0.5px 0.5px 1px 0.5px;
+}
+
+.toolsTable ul {
+    list-style-type: none;
+    margin-bottom: 0;
+    padding: 10px;
+}
+
+.toolsTable li {
+    display: inline-block;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+
+.toolsTable input {
+    width: 50px;
+    height: 30px;
+    border-radius: 2px;
+    border: 1px solid #e2e2e2;
+    margin-right: 5px;
+    margin-left: 5px;
+    text-align: center;
+}
+
+.toolsTable li span:hover{
+    background: #858391;
+}
+
+
+
+

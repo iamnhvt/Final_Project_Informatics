@@ -1,0 +1,241 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+    <title> Test filter </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Macondo" rel="stylesheet">
+    
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/pivotTable.css">
+    <link rel="stylesheet" type="text/css" href="css/footer.css">
+    <link rel="stylesheet" type="text/css" href="css/menu.css">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+</head>
+
+<body>
+    <div class="pageWrap">
+    <ul id="menu">
+        <li>
+            <a class="active" href="home.html"><span class="glyphicon glyphicon-home"></span></a>
+        </li>
+        <li> <a href="#"> News </a> </li>
+        <li> <a class="selected" href="pivottable.html"> Pivot Table </a> </li>
+        <li> <a href="form.html"> Form </a> </li>
+        <li> <a href="bubblechart.html"> Bubble Chart </a> </li>
+        <li class="dropbtn">
+            <a href="#"> Menu </a>
+            <div class="dropdown-content">
+                <a href="#"> Menu 1 </a>
+                <a href="#"> Menu 2 </a>
+                <a href="#"> Menu 3 </a>
+            </div>
+        </li>
+
+        <li class="ex" style="float:right"><a class="active" href="#about">Contact</a></li>
+    </ul>
+
+    <div class="imageCenter">
+        <img  src="images/pivottable.png" alt="Form" width="200px" height="200px">
+        <p style="margin-top: 20px"> <strong style="color: #2AB3FF"> DATA </strong> Explorer </p>
+    </div>
+
+    <div class="descriptionWrapper">
+        <div style="color: #a2a2a2"> The average of all <strong style="color: #FF6D18"> STATISTICS </strong> <br> We collected throughout this project! 
+        </div>
+    </div>
+
+    
+
+    <div id="pivotTable">
+        <div class="toolsTable">
+            <ul>
+                <li>
+                    <input id="rowsPerPage" type="text" value="10" onkeyup="showPage(1)"> Rows Per Page
+                </li>
+                <li>
+                    <span style="cursor: pointer" onclick = "plusPage(1)" class="glyphicon glyphicon-arrow-right"> </span> 
+                </li>
+                <li>
+                    <span style="cursor: pointer" onclick = "plusPage(-1)" class="glyphicon glyphicon-arrow-left"> </span> 
+                </li>
+                <li>
+                    Current Page: <input id="currentPage" type="text" value="1" onkeyup="showPage(this.value)">
+                </li>
+
+            </ul>
+        </div>
+        <table id = "pTable" border="0" class="tablesorter">
+            <thead>
+                <tr>
+                    <th> No. </th>
+                    {% for i in range(headers|length) %}
+                    <th class = "unsorted" onclick = "sort({{i+1}})"> <p> {{headers[i]}} </p>
+                        <div class="sortSign">
+                            <span class="glyphicon glyphicon-sort"> </span>
+                        </div>
+                    </th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in range(rows|length) %}
+                <tr> 
+                    <td> {{i+1}} </td>
+                    {% for j in range(rows[i]|length) %}
+                    <td> {{rows[i][j]}} </td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    </div>
+
+    <div id="test"> </div>
+
+    <!-- Footer of the web page -->
+    <div id="footer">
+        <div class="footerWrap">
+            <div class="footerMenu">
+                <table border="0">
+                    <tbody>
+                        <tr>
+                            <th> Group info </th>
+                            <th> Reference </th>
+                            <th> General </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <ol>
+                                    <li> Tuong Pham - 849323 </li>
+                                    <li> Hasibulshamim Anik - 787496 </li>
+                                    <li> Joseph Arnaud - 759845 </li>
+                                </ol>
+                            </td>
+                            <td>
+                                <ol>
+                                    <li> Stack Overflow </li>
+                                    <li> W3Schools </li>
+                                    <li> AdobeColor </li>
+                                </ol>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Ending footer -->
+    <script>
+
+    function isNumeric(n){
+        return !isNaN(parseFloat(n)) && isFinite(n);
+    }
+
+    function sort(columnIndex) {
+        var tbody = document.getElementById("pTable").getElementsByTagName("tbody")[0];
+        var thead = document.getElementById("pTable").getElementsByTagName("thead")[0];
+        var heading = thead.getElementsByTagName("th");
+
+        var rows = tbody.getElementsByTagName("tr");
+
+        var columnClass = heading[columnIndex].className;
+
+        // If this column is unsorted or is sorted in descending order, sort in in ascending order
+        if (columnClass == "unsorted" || columnClass == "descending"){
+            ascending = true;
+            heading[columnIndex].className = "ascending";
+            heading[columnIndex].getElementsByTagName("span")[0].className = "glyphicon glyphicon-sort-by-attributes";
+
+            for (i = 1; i < heading.length; i++){
+                if (i != columnIndex){
+                    heading[i].className = "unsorted";
+                    heading[i].getElementsByTagName("span")[0].className = "glyphicon glyphicon-sort";
+                }
+            }
+        } else {
+            ascending = false;
+            heading[columnIndex].className = "descending";
+            heading[columnIndex].getElementsByTagName("span")[0].className = "glyphicon glyphicon-sort-by-attributes-alt";
+
+            for (i = 1; i < heading.length; i++)
+                if (i != columnIndex){
+                    heading[i].className = "unsorted";
+                    heading[i].getElementsByTagName("span")[0].className = "glyphicon glyphicon-sort";
+                }
+        }
+
+
+        var unsorted = true;
+
+        while (unsorted) {
+            unsorted = false
+
+            for (var r = 0; r < rows.length - 1; r++) {
+                var row = rows[r];
+                var nextRow = rows[r + 1];
+
+                var value = row.getElementsByTagName('td')[columnIndex].innerHTML;
+                var nextValue = nextRow.getElementsByTagName('td')[columnIndex].innerHTML;
+
+                if (isNumeric(value)){
+                    value = parseFloat(value);
+                    nextValue = parseFloat(nextValue);
+                }
+                
+                if (ascending ? value > nextValue : value < nextValue) {
+                    tbody.insertBefore(nextRow, row);
+                    unsorted = true;
+                }   
+            }
+        }
+        for (i = 0; i < rows.length; i++){
+            rows[i].getElementsByTagName("td")[0].innerHTML = i + 1;
+        }
+        showPage(parseInt(document.getElementById("currentPage").value));
+    };
+
+    function showPage(pageNumber){
+        var tbody = document.getElementById("pTable").getElementsByTagName("tbody")[0];
+        var rows = tbody.getElementsByTagName("tr");
+        document.getElementById("currentPage").value = pageNumber;
+        var rowsPerPage = document.getElementById("rowsPerPage").value;
+        for (i = 0; i < rows.length; i++){
+            rows[i].style.display = 'none';
+        }
+        for (i = (pageNumber-1) * rowsPerPage; i < Math.min(pageNumber * rowsPerPage, rows.length); i++){
+            rows[i].style.display = "";
+        }
+    }
+
+    function plusPage(num){
+        var tbody = document.getElementById("pTable").getElementsByTagName("tbody")[0];
+        var rows = tbody.getElementsByTagName("tr");
+        var rowsPerPage = document.getElementById("rowsPerPage").value;
+        var currentPage = parseInt(document.getElementById("currentPage").value);
+
+        if (currentPage + num > Math.ceil(rows.length / rowsPerPage) || currentPage + num <= 0)
+            return;
+        currentPage += num;
+
+        showPage(currentPage);
+    }
+
+    showPage(1);
+   
+    </script>
+
+</body>
+
+</html>

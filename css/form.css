@@ -1,0 +1,107 @@
+.formPivot {
+    max-width: 500px;
+    padding: 15px 20px;
+    background: #f4f7f8;
+    margin: 10px 5px;
+    border-radius: 8px;
+    width: 300px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.formPivot fieldset {
+    border: none;
+}
+
+.formPivot legend {
+    font-size: 20px;
+    margin-bottom: 14px;
+}
+
+.formPivot label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.formPivot input[type="text"],
+.formPivot textarea,
+.formPivot select {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 18px;
+    margin: 0 0 25px 0;
+    background-color: #e7e7e7;
+    color: #2e221c;
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding: 6px;
+}
+
+.formPivot input[type="text"]:focus,
+.formPivot textarea:focus,
+.formPivot select:focus {
+    background: #d2d9dd;
+    border: 1px solid #2970fb;
+}
+
+.formPivot .number {
+    background: #1abc9c;
+    color: #fff;
+    height: 30px;
+    width: 30px;
+    display: inline-block;
+    font-size: 15px;
+    margin-right: 4px;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 15px 15px 15px 0px;
+}
+
+div input[type="submit"] {
+    border-radius: 5px;
+    position: relative;
+    display: block;
+    padding: 14px 30px;
+    margin: 10px auto;
+    background: #1abc9c;
+    font-size: 18px;
+    text-align: center;
+    width: 100%;
+    border: 1px solid #079c80;
+    border-width: 1px 1px 3px;
+}
+
+.wrapButtonNext {
+    position: absolute;
+    left: 50%;
+    bottom: 10px;
+}
+
+.buttonNext {
+    border-radius: 5px;
+    display: block;
+    background-color: #7199ff;
+    border: 2px solid #000000;
+    border-width: 0px 0px 1.5px;
+    outline: none;
+    color: #e5e4d7;
+    position: relative;
+    width: 200px;
+    left: -50%;
+
+}
+
+.buttonNext:hover {
+    background-color: #1abc9c;
+}
+
+div input[type="submit"]:hover {
+    background: #109177;
+}
+
+.formPivot select:last-child{
+    margin-bottom: 40px;
+}

@@ -1,0 +1,47 @@
+.searchBarWrapper {
+    position: absolute;
+    left: -70%;
+    width: 70%;
+    height: 100%;
+    top: 0;
+}
+
+.searchBar {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: #242729;
+    overflow: scroll;
+    display: none;
+    border-radius: 5px;
+}
+
+.searchBar .headerSearchBar {
+    position: relative;
+    margin: 14px 14px 0px;
+    color: white;
+    font-size: 20px;
+}
+
+ul#resultInput {
+    list-style-type: none;
+    padding: 5px;
+    position: relative;
+    width: 100%;
+    text-align: left;
+}
+        
+ul#resultInput li a {
+    padding: 5px 14px;
+    border-bottom: 1px solid #FF8653;
+    display: block;
+    text-decoration: none;
+    width: 100%;
+    font-size: 18px;
+    color: #9fa6ad;
+    cursor: pointer;
+}
+
+ul#resultInput li a:hover{
+    background: #FF7C3B;
+}
