@@ -6,18 +6,26 @@ Title: Collections Of HIV Data Around The World In The Period of 1990 to 2015
 ———————————————————————————————-———————————————————————————————-
 CONTENTS
 ———————————————————————————————-———————————————————————————————-
-1. DATA SOURCE
-2. DATA PROCESSING
-3. STRUCTURE OF THE WEB PLATFORM
-	3.1. FRAMEWORK, OUTSOURCED LIBRARY AND API
-	3.2. WEB STRUCTURE
-	3.3 SUPPORTED FUNCTION (JS & PY FILE)
-4. FOLDER STRUCTURE
-5. HOW TO RUN THE WEB
-6. REFERENCE
+1. INTRODUCTION AND PREQUISITE
+2. DATA SOURCE
+3. DATA PROCESSING
+4. STRUCTURE OF THE WEB PLATFORM
+	4.1. FRAMEWORK, OUTSOURCED LIBRARY AND API
+	4.2. WEB STRUCTURE
+	4.3 SUPPORTED FUNCTION (JS & PY FILE)
+5. FOLDER STRUCTURE
+6. HOW TO RUN THE WEB
+7. REFERENCE
+
+————————————————————————————————————
+1. INTRODUCTION AND PREQUISITE
+————————————————————————————————————
+This web platform is the 12-week project of the subject Foundations of Informatics. The website mainly focuses on the HIV statistics and information around the world. Particularly, the data is collected from a number of sources (described in section 2), then it will be processed by  Python at server side. After the data is analyzed and useful information is discovered, it will be sent to the presentation layer (front-end) in order to display the information to the users and provide them with many features to get the information they require. 
+
+In order to let this platform run successfully in your computer, you have to install Python 2 and Python 2 library Flask.
 
 ——————————————————
-1. DATA SOURCE
+2. DATA SOURCE
 ——————————————————
 
 - We mainly collect the data from 2 websites: UN Data, and World Bank.
@@ -36,7 +44,7 @@ then found the data in more details, which is the data about region and income c
 	Population Percentage: 
 
 ——————————————————
-2. DATA PROCESSING
+3. DATA PROCESSING
 ——————————————————
 
 - We first consider how we can pro-process the 5 sets of data to make the main processing stage more flexible and accurate.
@@ -77,10 +85,10 @@ then found the data in more details, which is the data about region and income c
 	create a JSON file (using AJAX library to get) (Discuss more in part 3)
 
 ————————————————————————————
-3. STRUCTURE OF WEB PLATFORM
+4. STRUCTURE OF WEB PLATFORM
 ———————————————————————————-
 
-3.1. FRAMEWORK, OUTSOURCED LIBRARY AND API
+4.1. FRAMEWORK, OUTSOURCED LIBRARY AND API
 
 - We exclusively use flask library in python as framework of the web and to host it in this project
 - Besides, we also outsourced some JavaScript Library, and Google API to support some function of the web:
@@ -91,7 +99,7 @@ Since putting these code in HTML file makes it complicated and difficult to debu
 	+ Google Chart APIs: This is the main tool to make all the charts in the web
 	+ Beside, we outsourced some google fonts to make the web more user-friendly (e.g. Roboto, Macondo)
 	
-3.2. WEB STRUCTURE
+4.2. WEB STRUCTURE
 - In general, our web contains 5 main pages, each page is represented by one html, and visually supported by at least one css file:
 	1. Home (home.html, main CSS: homePage.css) 
 		Introduction to the project, problem, features
@@ -108,7 +116,7 @@ Since putting these code in HTML file makes it complicated and difficult to debu
 		menu.css (css for top menu)
 		footer.css (css for footer)
 
-3.3. SUPPORTED FUNCTION (JS & PY FILE)
+4.3. SUPPORTED FUNCTION (JS & PY FILE)
 - Some web page features are supported by at least one js file.
 	+ Home page just shows the introduction and features, so it does not have supported js file
 	+ Pivot Table page is supported by "pivottableFunction.js", which is passed to html file by AJAX libary
@@ -134,7 +142,7 @@ Since putting these code in HTML file makes it complicated and difficult to debu
 
 
 ————————————————————————————
-4. FOLDER STRUCTURE
+5. FOLDER STRUCTURE
 ———————————————————————————-
 In this project, we created total 7 folder, which hold a particular type of filer, but connected tightly to each other.
 1. Templates Folder:
@@ -154,7 +162,7 @@ In this project, we created total 7 folder, which hold a particular type of file
 	retrieved those data (using get Json)
 	
 ————————————————————————————
-5. HOW TO RUN THE WEB
+6. HOW TO RUN THE WEB
 ———————————————————————————-
 - After going through all the features and the structure of the web, we will show how to host this web. The web is hosted by flask library of Python so that we simply
 open the file "host.py" in the folder and run it (using python 2.7). After that, we go to the local domain "http://127.0.0.1:5000/" to start using the website.
@@ -163,7 +171,7 @@ suggest you to see the website in full screen (press F11 if you use windows, or 
 - Internet connection is required since the chart (using google API) is created by 
 the server on the internet.
 ——————————————————
-6. REFERENCE
+7. REFERENCE
 ——————————————————
 - Throughout this project, we have refer to some HTML structure and colors on the internet to create the good-looking and user-friendly webpage:
 	+ http://digitalvisitor.com/ : the web that we get some color codes, and refer the menu structure. ( We just observe the structure, and coded by ourselves)
