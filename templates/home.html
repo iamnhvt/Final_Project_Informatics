@@ -6,81 +6,257 @@
     <title> Test filter </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/pivotTable.css">
+    <link rel="stylesheet" type="text/css" href="css/footer.css">
+    <link rel="stylesheet" type="text/css" href="css/menu.css">
+    <link rel="stylesheet" type="text/css" href="css/homePage.css">
+    
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="js/jQuery.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script>
 
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Macondo" rel="stylesheet">
-    
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
-    <link rel="stylesheet" type="text/css" href="../css/pivotTable.css">
-    <link rel="stylesheet" type="text/css" href="../css/footer.css">
-    <link rel="stylesheet" type="text/css" href="../css/menu.css">
-    
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    
+        // Get the templates for menu and footer
+        $(document).ready(function(){
+            $("#scrollToIntrodcuction").click(function(){
+                $('html, body').animate({ scrollTop: $('#introduction').offset().top }, 'slow')
+            });
+            $.ajax({url: "templates/footer.html", success: function(result){
+                $("#footerWrapper").html(result);
+            }});
+
+
+            // Scroll To first feature when click the button 
+            $("#scrollToFeature").click(function(){
+                $('html, body').animate({ scrollTop: $('#firstFeature').offset().top }, 'slow')
+            });
+        });
+
+
+    </script>
+
 </head>
 
 <body>
-    <div class="pageWrap">
-    <ul id="menu">
-        <li>
-            <a class="active" href="home.html"><span class="glyphicon glyphicon-home"></span></a>
-        </li>
-        <li> <a href="#"> News </a> </li>
-        <li> <a class="selected" href="pivottable.html"> Pivot Table </a> </li>
-        <li> <a href="form.html"> Form </a> </li>
-        <li class="dropbtn">
-            <a href="#"> Menu </a>
-            <div class="dropdown-content">
-                <a href="#"> Menu 1 </a>
-                <a href="#"> Menu 2 </a>
-                <a href="#"> Menu 3 </a>
+    <div class="homepageWrap">
+        <!-- Background of the page -->
+        <div id = "background" class="backgroundWrapper">
+            <div class="title"> <a href="home.html"> Final Project <br> Foundations of Informatics </a> </div>
+
+            <div style="margin-top: 20%; margin-left: 30px;" class="buttonsWrapper">
+                <a href = "pivottable.html" class="button"> Data Explorer </a>
+                <a id = "scrollToIntrodcuction" class="button"> Introduction </a>
             </div>
-        </li>
+         </div>
 
-        <li class="ex" style="float:right"><a class="active" href="#about">Contact</a></li>
-    </ul>
-
-    </div>
-
-    <div id="test"> </div>
-
-    <!-- Footer of the web page -->
-    <div id="footer">
-        <div class="footerWrap">
-            <div class="footerMenu">
-                <table border="0">
-                    <tbody>
-                        <tr>
-                            <th> Group info </th>
-                            <th> Reference </th>
-                            <th> General </th>
-                        </tr>
-                        <tr>
-                            <td>
+         <!-- Introduction of the Page -->
+         <div id = "introduction" class="homeIntroduction"> 
+            <h2 class="text"> WHAT IS THE DATA ABOUT ? </h2>
+            <img src = "images/hivIcon.png" alt ="HIV ICON" height="80px" width="80px">
+            <h1> <strong style = "color: #FF615C"> HIV INCIDENCE </strong> OF YOUNG GENERATION FROM 1990 TO 2015 ACROSS THE WORLD </h1>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <h2 class="text"> WHERE IS IT DERIVED FROM ? </h2>
+                        <a style="display: block; margin: 40px" href = "http://data.worldbank.org"> <img src = "images/WorldBankLogo.png" alt ="HIV ICON" height="100px" width="220px"> </a>
+                        <a style="display: block; margin: 40px" href = "http://data.un.org"> <img src = "images/unDataLogo.png" alt ="HIV ICON" height="100px" width="220px"> </a>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <h2 class="text"> HOW WE COLLECT THEM? </h2>
+                        <div class="description">
+                            We do recognize that HIV is the century disease that ruins our world considerably over that past 20 years. After finishing examining many set of data, it seems feasible to us that <strong style = "color: #FF615C"> HIV incidence </strong> in one country might correlate to its <strong style = "color: #7A90E8"> development in economics </strong>. 
+                            <br> <br>
+                            Finally, we ended up selecting 5 distinct set of datas, each set is broken up in countries:
+                            <div style="margin-left: 20%">
                                 <ol>
-                                    <li> Tuong Pham - 849323 </li>
-                                    <li> Hasibulshamim Anik - 787496 </li>
-                                    <li> Joseph Arnaud - 759845 </li>
-                                </ol>
-                            </td>
-                            <td>
-                                <ol>
-                                    <li> Stack Overflow </li>
-                                    <li> W3Schools </li>
-                                    <li> AdobeColor </li>
-                                </ol>
-                            </td>
-                        </tr>
-
-                    </tbody>
-                </table>
+                                    <li> <a href = "http://data.worldbank.org/indicator/SH.HIV.1524.MA.ZS"> Males HIV Incidence (15-24) </a> </li>
+                                    <li> <a href = "http://data.worldbank.org/indicator/SH.HIV.1524.FE.ZS"> Females HIV Incidence (15-24) </a> </li>
+                                    <li> <a href = "http://data.worldbank.org/indicator/NY.GDP.PCAP.CD"> Total GDP and GDP Per Capita </a> </li>
+                                    <li> <a href = "http://data.worldbank.org/indicator/SP.POP.TOTL"> Total Population </a> </li>
+                                    <li> <a href = "http://data.un.org/Data.aspx?q=HIV&d=UNAIDS&f=inID%3a36"> Income and Region </a> </li>
+                                </oL>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+
+        <!-- Navigate button of the page -->
+        <div style="text-align: center; min-height: 300px; line-height: 300px" class="buttonsWrapper">
+            <a href = "pivottable.html" class="button"> Data Relationship </a>
+            <a id = "scrollToFeature" class="button"> Website Features  </a>
+        </div>
+
+        <!-- First Feature Wrapper Of the Page -->
+        <div id = "firstFeature" style = "background: #FF866A; color: #FFF" class="descriptionWrapper2">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5" style="height: 600px; line-height: 600px">
+                        <img style="margin-left: 0" width = "400px" height = "400px" src = "images/dataprocessing.png"> </img>
+                    </div>
+                    <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+                        <div class="featureDescription">
+                            <div style="color: #727272" class="title"> DATA PROCESSING </div>
+                            Manipulating And Processing Efficiently 6 Sets Of Data With More Than 20000 Cells.
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div style="color: #929292" class="subtitle"> Pre-Processing </div>
+                                    <div class="text">
+                                    Google spreadsheet is mainly used to pre-process the raw csv data, which involves
+                                    deleting some errors cell, and clean the empty rows. We also manually change some
+                                    cells due to semantic errors.
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div style="color: #929292" class="subtitle"> Strict Data Analysis Process </div>
+                                    <div class="text">
+                                    We strictly follow the 5 steps in data analysis process, which includes:
+                                    Sourcing, Understanding, Cleaning, Transformation, and Feature Selection.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" style = "width: 270px; display: block; margin: 10px auto">
+                                    <div style="color: #929292" class="subtitle"> Efficient Data Storage </div>
+                                    <div class="text">
+                                        All the data in this project is stored and managed by just 2 dictionary data 
+                                        structure of Python. Interestingly, these two data structures are used together
+                                        to find relationship easily and accurately.
+                                    </div>
+    
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Second Feature Wrapper Of the Page, all characteristics is the same as first feature -->
+        <div style = "background: #FFF; color: #474747" class="descriptionWrapper2">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+                        <div class="featureDescription">
+                            <!-- Title of the Feature -->
+                            <div style="color: #3BADFF" class="title"> DATA FILTERING </div>
+                            <!-- Explain the feature in general -->
+                            Extracting The Key Data And Presenting In A General Table. Besides, Users
+                            Can Select The Information They Want By Pivot Table Form.
+
+                            <!-- Explain some detailed feature of the page -->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div style="color: #47FFAD" class="subtitle"> Error Handling </div>
+                                    <div class="text">
+                                    We create a unique function to handle all possible errors related to input, 
+                                    value, and aggregation, then forward to a new page to show the error description.
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div style="color: #47FFAD" class="subtitle"> Efficient Aggregation And Filter Algorithm </div>
+                                    <div class="text">
+                                    Flexible and wide-range filter value and Aggregation options is provided in this web platform.
+                                    All filtered information is processed and seleted accurately at server side (using Python).
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div style="color: #47FFAD" class="subtitle"> Flexible Pivot Table </div>
+                                    <div class="text">
+                                    We use the same table of general information. All the filtered data is
+                                    passed to the table cell by using Flask framework. Therefore, the table is very responsive,
+                                    and has many features for users.
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div style="color: #47FFAD" class="subtitle"> Visual Complementation </div>
+                                    <div class="text">
+                                        Every pivot table is visualized by a bar chart. The bar chart is created dynamically
+                                        by JavaScript, which collects all the data in table cells and make the chart based on
+                                        Google Chart API. Besides, each cell is colored based on it values.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="position: relative; height: 650px" class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                        <img style="position: absolute; top: 0; bottom: 0; left: 0; right: 0; margin: auto" 
+                        width = "400px" height = "300px" src = "images/background2.png"> </img>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Third Feature Wrapper Of the Page, all characteristics is the same as first feature -->
+        <div style = "background: #696969; color: #FFF" class="descriptionWrapper2">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5" style="height: 600px; line-height: 600px">
+                        <img style="margin-left: 0" width = "400px" height = "400px" src = "images/background3.png"> </img>
+                    </div>
+                    <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+                        <div class="featureDescription">
+                            <div style="color: #FF9368" class="title"> DATA VISUALIZATION </div>
+                            Providing Visual Complementation For Almost Every Set And Relationship Of Data. 
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div style="color: #E8CC86" class="subtitle"> Google API and JavaScript </div>
+                                    <div class="text">
+                                    Google charts API is the unique outsourced API we use to display visualization in this
+                                    project. Besides, we also use JavaScript to make the chart more responsive and user-friendly.
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div style="color: #E8CC86" class="subtitle"> Wide Variety Of Charts </div>
+                                    <div class="text">
+                                    By Investigating in many possible relationship of data, we can find a wide number of
+                                    types to represent it. Some common forms are Line chart, Bar chart, Pie chart, Geo chart,
+                                    and Bubble chart.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div style="color: #E8CC86" class="subtitle"> Two Ultimate Charts </div>
+                                    <div class="text">
+                                    We did provide the two ultimate charts, which represent the data in general of many countries 
+                                    in the period from 1990 to 2015. This gives a better understanding of problems, and more accurate
+                                    hypothesis.
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div style="color: #E8CC86" class="subtitle"> Detailed Charts </div>
+                                    <div class="text">
+                                    Beside the ultimate charts, The chart related to the relationship of many aspects of
+                                    HIV is provided to maximize the understanding of problems.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
     </div>
+
+    <!-- Footer of the web page -->
+    <div id="footerWrapper"> </div>
 
     <!-- Ending footer -->
 </body>
+
+<script>
+    // Scroll to the top menu
+    function goToMenu(){
+        $('html, body').animate({ scrollTop: $('#background').offset().top }, 'slow')
+    }
+</script>
 
 </html>

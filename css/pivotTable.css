@@ -35,21 +35,17 @@
     border-bottom: 1px solid #d1d2d3;
     font-size: 14px;
     color: #564534;
+
 }
 
 #pivotTable table tbody td {
     border-right: 1px solid #d1d2d3;
     padding: 8px 10px;
+    line-height: 1.5;
+    min-width: 100px;
 }
 
 
-#pivotTable tbody tr:nth-child(odd){
-    background: #ebebeb;
-}
-
-#pivotTable table tbody tr:hover{
-    background-color: #858391;
-}
 #pivotTable table th .sortSign {
     position: absolute;
     bottom: 0;
@@ -85,16 +81,121 @@
 .toolsTable input {
     width: 50px;
     height: 30px;
-    border-radius: 2px;
+    border-radius: 5px;
     border: 1px solid #e2e2e2;
     margin-right: 5px;
     margin-left: 5px;
     text-align: center;
+    outline: none;
 }
 
 .toolsTable li span:hover{
     background: #858391;
 }
+
+.toolsTable li #countryInput {
+    width: 150px;
+    border-radius: 5px;
+    outline: none;
+}
+
+.toolsTable li input:focus {
+    border: 1px solid #FF5B66;
+}
+
+.returnButton {
+    text-decoration: none;
+    padding: 15px;
+    display: block;
+    margin: 15px auto;
+    border: 1px solid #FF4A58;
+    width: 25%;
+    text-align: center;
+    font-size: 20px;
+    outline: none;
+    border-radius: 5px;
+    box-shadow: 5px 5px 2.5px #888888;
+}
+
+.returnButton:hover {
+    background: #FF92A0;
+    text-decoration: none;
+}   
+
+
+/*------------------------------*/
+.advancedToolWrapper {
+    position: fixed;
+    left: 0;
+    top: 20%;
+    height: 60%;
+    width: 20%;
+    background: #f2f2f2;
+    z-index: 1;
+}
+
+.colorLegendWrapper {
+    position: relative;
+    margin-top: 24px;
+    text-align: left;
+    font-size: 22px;
+}
+
+.colorLegendWrapper .colorCell {
+    display: inline-block;
+    margin: 0;
+    width: 8.5px;
+    height: 10px;
+}
+
+/*--------------------------*/
+.pivotChartWrapper {
+    position: relative;
+    width: 100%;
+    margin-top: 50px;
+    padding: 30px;
+    background: #f2f2f2;
+    display: none;
+}
+
+/*--------------------------*/
+.fixedButtonWrapper {
+    position: fixed;
+    right: 0px;
+    display: inline-block;
+    width: 100px;
+    top: 60%;
+    z-index: 1;
+}
+
+.fixedButtonWrapper .fixedButton {
+    width: 100%;
+    height: 100px;
+    display: block;
+    margin: 5px;
+    border-radius: 5px;
+    outline: none;
+    padding: 10px;
+    border: 1px solid #36AEFF;
+    background: #fff;
+}
+
+.fixedButtonWrapper .fixedButton:hover {
+    background: #99DFFF;
+}
+
+.fixedButtonWrapper #popinout {
+    position: absolute;
+    top: 45%;
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 5px;
+    background: #FF9979;
+}
+
 
 
 

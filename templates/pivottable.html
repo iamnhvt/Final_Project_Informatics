@@ -6,101 +6,182 @@
     <title> Test filter </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Macondo" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/pivotTable.css">
     <link rel="stylesheet" type="text/css" href="css/footer.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/menu.css">
+    
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="js/jQuery.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/chartLoader.js"></script>
+
+    <script>
+    $(document).ready(function(){
+        // Get the templates for menu and footer of the web
+        $.ajax({url: "templates/horizontalMenu.html", success: function(result){
+                $("#menuWrapper").html(result);
+                document.getElementById("menu").getElementsByTagName("li")[1].getElementsByTagName("a")[0].className = "selected";
+        }});
+        
+        $.ajax({url:"templates/footer.html", success: function(result){
+                $("#footerWrapper").html(result);
+        }});
+
+        // popinout is the additional feature bar of the chart, click to hide it
+        $("#popinout").click(function(){
+            if ($(this).find("span").attr('class').indexOf("right") != -1){
+                $(".fixedButtonWrapper").css("right", "-80px");
+                $(this).find("span").attr('class', 'glyphicon glyphicon-chevron-left');
+            } else {
+                $(".fixedButtonWrapper").css("right", "0");
+                $(this).find("span").attr('class', 'glyphicon glyphicon-chevron-right')
+            }
+        });
+    });
+    </script>
+
 </head>
 
 <body>
     <div class="pageWrap">
-    <ul id="menu">
-        <li>
-            <a class="active" href="#"><span class="glyphicon glyphicon-home"></span></a>
-        </li>
-        <li> <a href="#"> News </a> </li>
-        <li> <a class="selected" href="pivottable.html"> Pivot Table </a> </li>
-        <li> <a href="submit.html"> Form </a> </li>
-        <li class="dropbtn">
-            <a href="#"> Menu </a>
-            <div class="dropdown-content">
-                <a href="#"> Menu 1 </a>
-                <a href="#"> Menu 2 </a>
-                <a href="#"> Menu 3 </a>
-            </div>
-        </li>
 
-        <li class="ex" style="float:right"><a class="active" href="#about">Contact</a></li>
-    </ul>
-
-    <div id="pivotTable">
-        <table border="0">
-            <thead>
-                <tr>
-                    <th> Name </th>
-                    <th> Min Salary </th>
-                    <th> Country </th>
-                    <th> Is Full Time? </th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for i in range(rows|length) %}
-                <tr> 
-                    <td> {{rows[i].name}} </td> 
-                    <td> {{rows[i].salary}} </td>
-                    <td> {{rows[i].country}} </td> 
-                    <td>
-                        {% if rows[i].isFullTime %}
-                        <span class="glyphicon glyphicon-ok"></span>
-                        {% else %}
-                        <span class="glyphicon glyphicon-remove"></span>
-                        {% endif %}
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-    </div>
-
-    <!-- Footer of the web page -->
-    <div id="footer">
-        <div class="footerWrap">
-            <div class="footerMenu">
-                <table border="0">
-                    <tbody>
-                        <tr>
-                            <th> Group info </th>
-                            <th> Reference </th>
-                            <th> General </th>
-                        </tr>
-                        <tr>
-                            <td>
-                                <ol>
-                                    <li> Tuong Pham - 849323 </li>
-                                    <li> Hasibulshamim Anik - 787496 </li>
-                                    <li> Joseph Arnaud - 759845 </li>
-                                </ol>
-                            </td>
-                            <td>
-                                <ol>
-                                    <li> Stack Overflow </li>
-                                    <li> W3Schools </li>
-                                    <li> AdobeColor </li>
-                                </ol>
-                            </td>
-                        </tr>
-
-                    </tbody>
-                </table>
+        <div id="menuWrapper"> </div>
+        
+        <!-- If there is errors when user input, show the error handling page -->
+        {% if errors %}
+        <div class="imageCenter">
+            <img  src="images/errors.png" alt="Form" width="200px" height="200px">
+            <p style="margin-top: 20px"> <strong style="color: #2AB3FF"> ERRORS </strong> Found! </p>
+        </div>
+        <div class="descriptionWrapper">
+            <div style="color: #a2a2a2"> {{description}} 
             </div>
         </div>
+
+        <a class="returnButton" href="form.html"> Come Back to Pivot Table Form </a>
+
+        <!-- Else show the pivot table and some features -->
+        {% else %}
+        <!-- Center Image of the chart -->
+        <div class="imageCenter">
+            <img  src="images/pivottable.png" alt="Form" width="200px" height="200px">
+            <p style="margin-top: 20px"> <strong style="color: #2AB3FF"> DATA </strong> Explorer </p>
+        </div>
+
+        <!-- The descriptionWrapper with description passed from python using render_template -->
+        <div class="descriptionWrapper">
+            <div style="color: #a2a2a2"> {{description}} 
+            </div>
+        </div>
+
+        <!-- Pivot table  -->
+        <div id="pivotTable">
+            <!-- Some tools on the table: Sort, finding, changePage, set Page Number -->
+            <div class="toolsTable">
+                <ul>
+                    <li>
+                        <!-- Show rows per page -->
+                        <input id="rowsPerPage" type="text" value="30" onkeyup="showPage(1)"> Rows Per Page
+                    </li>
+                    <!-- Move up and down the page number -->
+                    <li>
+                        <span style="cursor: pointer" onclick = "plusPage(1)" class="glyphicon glyphicon-arrow-right"> </span> 
+                    </li>
+                    <li>
+                        <span style="cursor: pointer" onclick = "plusPage(-1)" class="glyphicon glyphicon-arrow-left"> </span> 
+                    </li>
+                    <!-- The current page of the table -->
+                    <li>
+                        Current Page: <input id="currentPage" type="text" value="1" onkeyup="showPage(this.value)">
+                    </li>
+                    <!-- Search value in the particular column -->
+                    <li>
+                        Search in Column: <input id="searchColumn" type="text" onkeyup = "findValue()" placeholder="">:  
+                        <input id="countryInput" type="text" onkeyup = "findValue()" placeholder=""> 
+                    </li>
+
+                </ul>
+            </div>
+
+            <!-- Table body -->
+            <table id = "pTable" border="0" class="tablesorter">
+                <!-- Header -->
+                <thead>
+                    <tr>
+                        <!-- Passing headers from python using render_template -->
+                        <th> No. </th>
+                        {% for i in range(headers|length) %}
+                        <th class = "unsorted" onclick = "sort({{i+1}})"> <p> {{headers[i]}} </p>
+                            <div class="sortSign">
+                                <!-- Initially, all columns is unsorted -->
+                                <span class="glyphicon glyphicon-sort"> </span>
+                            </div>
+                        </th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+
+                <!-- Body -->
+                <tbody>
+                    <!-- Passing rows and cell data from Python using render_template -->
+                    {% for i in range(rows|length) %}
+                    <tr> 
+                        <td> {{i+1}} </td>
+                        {% for j in range(rows[i]|length) %}
+                        <!-- Passing the value and corresponding value -->
+                        <td style="background:{{rows[i][j].color|safe}}; color: #000"> {{rows[i][j].value}} </td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <!-- If color legends is passed, show the legned colors -->
+            {% if colorLegends|length > 0 %}
+                <!-- If there is legend color, there must be pivot chart, so includes the additional tools -->
+                <div class="fixedButtonWrapper">
+                    <div id = "popinout">
+                        <span class="glyphicon glyphicon-chevron-right"> </span> 
+                    </div>
+                    <button class = "fixedButton" onclick="drawPivotChart()"> Show Pivot Chart <div class="glyphicon glyphicon-stats"> </div> </button>
+                    <button class = "fixedButton" onclick="switchRowColumn()"> Switch Column/Row <div class="glyphicon glyphicon-random"> </div> </button>
+                </div>  
+                <div class="colorLegendWrapper">
+                    <h3 style = "color: #FFA37A; border-bottom: 2px solid #E2E2E2"> Legend Colors </h3>
+
+                <!-- Passing value of color legends to display some blocks -->
+                {% for color in colorLegends %}
+                    <div style="background:{{color}}" class="colorCell"> </div>
+                {% endfor %}
+                <div style="font-size: 17px; position: absolute; left: 0"> {{minData}} </div>
+                <div style="font-size: 17px; position: absolute; right: 0"> {{maxData}} </div>
+                </div>
+            {% endif %}
+        </div>
+
+        <div id = "pivotChartWrapper" class="pivotChartWrapper">
+            <div style="width: 100%; height: 600px" id="pivotChart"> </div>
+        </div>
+        {% endif %}
     </div>
+
+
+    <!-- Footer of the web page -->
+    
+    <div id="footerWrapper"> </div>
+
     <!-- Ending footer -->
+    <script>
+
+    $.getScript("js/pivottableFunction.js");
+    function goToMenu(){
+        $('html, body').animate({ scrollTop: $('#menuWrapper').offset().top }, 'slow')
+    }
+
+
+    </script>
 
 </body>
 

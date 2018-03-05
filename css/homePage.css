@@ -1,0 +1,97 @@
+.backgroundWrapper {
+    width: 100%;
+    display: block;
+    min-height: 800px;
+    position: relative;
+    background-image: url("../images/background.png");
+    padding-top: 40px;
+}
+
+.backgroundWrapper .title {
+    position: relative;
+    margin-left: 30px;
+    font-size: 40px;
+    display: inline-block;
+    padding: 10px;
+}
+
+.backgroundWrapper .title a,
+.backgroundWrapper .title a:hover {
+    text-decoration: none;
+    outline: none;
+    color: #3989BC;
+}
+
+.backgroundWrapper .title:hover {
+    border-right: 3px solid #2CFF9D;
+} 
+
+.buttonsWrapper {
+    display: block;
+    position: relative;
+}
+
+.homepageWrap a.button {
+    display: inline-block;
+    padding: 20px;
+    border: 1px solid #14A5BC;
+    font-size: 30px;
+    color: #39BC8F;
+    margin-right: 40px;
+    text-decoration: none;
+    outline: none;
+    cursor: pointer;
+    line-height: 120%;
+}
+
+.homepageWrap  a.button:hover {
+    background: #5A5A95;
+}
+
+/*-----------------------------------*/
+.homeIntroduction {
+    position: relative;
+    display: block;
+    background: #F2F2F2;
+    text-align: center;
+    line-height: 130%;
+    padding-top: 40px;
+    margin-top: -50px;
+    
+}
+
+.homeIntroduction .text {
+    color: #8d8d8d;
+}
+
+.homeIntroduction .description {
+    font-size: 20px;
+    font-family: 'Rasa';
+    padding: 20px;
+    text-align: left;
+    line-height: 130%;
+}
+
+/*-----------------------------------*/
+.featureDescription {
+    padding: 10px;
+    font-size: 23px;
+    line-height: 140%;
+    text-align: left;
+}
+
+.featureDescription .title {
+    font-size: 35px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.featureDescription .row .subtitle {
+    font-size: 24px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.featureDescription .row .text {
+    font-size: 18px;
+}

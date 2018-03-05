@@ -1,3 +1,5 @@
+<!-- Pivot Table Form -->
+
 <!DOCTYPE HTML>
 
 <html>
@@ -7,76 +9,69 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Macondo" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Rubik+Mono+One" rel="stylesheet">
-
-    
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/form.css">
     <link rel="stylesheet" type="text/css" href="css/footer.css">
     <link rel="stylesheet" type="text/css" href="css/menu.css">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="js/jQuery.js"></script>
+    <script src="js/bootstrap.js"></script>
+
+    <script>
+    // Get the table menu and footer
+    $(document).ready(function(){
+        $.ajax({url: "templates/horizontalMenu.html", success: function(result){
+                $("#menuWrapper").html(result);
+                document.getElementById("menu").getElementsByTagName("li")[2].getElementsByTagName("a")[0].className = "selected";
+        }});
+
+        $.ajax({url: "templates/footer.html", success: function(result){
+                $("#footerWrapper").html(result);
+        }})
+
+    });
+    </script>
 </head>
 
 <body>
     <div class="pageWrap">
-        <!-- Horizontal Menu of the web -->
-    <ul id="menu">
-        <li>
-            <a class="active" href="home.html"><span class="glyphicon glyphicon-home"></span></a>
-        </li>
-        <li> <a href="#"> News </a> </li>
-        <li> <a href="pivottable.html"> Pivot Table </a> </li>
-        <li> <a class="selected" href="form.html"> Form </a> </li>
-        <li> <a href="bubblechart.html"> Bubble Chart </a> </li>
-        <li class="dropbtn">
-            <a href="#"> Menu </a>
-            <div class="dropdown-content">
-                <a href="#"> Menu 1 </a>
-                <a href="#"> Menu 2 </a>
-                <a href="#"> Menu 3 </a>
-            </div>
-        </li>
-
-        <li class="ex" style="float:right"><a class="active" href="#about">Contact</a></li>
-    </ul>
+    <!-- Horizontal Menu of the web -->
+    <div id="menuWrapper"> </div>
     <!-- Ending menu of the  web -->
 
-
+    <!-- Center Image of the Web -->
     <div class="imageCenter">
         <img src="../images/form.png" alt="Form" width="200px" height="200px">
         <h3> Pivot Table Form </h3>
     </div>
     
+    <!-- All the form of the web page -->
     <form id="form1" method="POST" action="/pivottable.html">
+
+        <!-- The form has 3 tables, being wrapped in this below div element -->
         <div style="display: flex; justify-content: center">
+
+            <!-- First Table -->
             <div class="formPivot" style="position: relative; display: inline-block;">
                 <fieldset>
-                    <legend><span class="number">1</span> General Information </legend>
-                    <label> Min Salary </label>
-                    <select id="minSalary" name="minSalary">
-                <option value = "1000"> 1000 </option>
-                <option value = "10000"> 10000 </option>
-                <option value = "50000"> 50000 </option>
-                <option value = "100000"> 100000 </option>
-                </select>
-                    <label> Country </label>
-                    <select id="country" name="country">
-                <option value ="australia"> Australia </option>
-                <option value ="vietnam"> VietNam </option>
-                <option value ="USA"> USA </option>
-                </select>
-                    <label> Is Full Time Employee? </label>
-                    <select id="isFullTime " name="isFullTime">
-                <option value = "yes"> yes </option>
-                <option value = "no"> no </option>
-                <option value = "both"> Both </option>
-                </select>
+                    <legend><span class="number">1</span> Main Filters </legend>
+                    <!-- It has two filter values -->
+                    <label> Row Label </label>
+                        <select id="rowLabel" name="rowLabel">
+                            <option value = "year"> Year 1990 - 2015 </option>
+                            <option value = "income"> Income Class </option>
+                            <option value = "region"> Region </option>
+                        </select>
+                    <label> Column Label </label>
+                        <select id="columnLabel" name="columnLabel">
+                            <option value ="year"> Year 1990 - 2015 </option>
+                            <option value ="income"> Income Class </option>
+                            <option value ="region"> Region </option>
+                        </select>
                 </fieldset>
+
+                <!-- At the end of every table, there is a next button to move to the next chart -->
                 <div class="wrapButtonNext">
                 <button class="buttonNext" type="button" onClick="showHiddenPivot(0)"> 
                 <span class="glyphicon glyphicon-chevron-right"></span>
@@ -84,20 +79,74 @@
                 </div>
             </div>
 
+            <!-- Second Table -  The characteristics are the same as the first one -->
             <div class="formPivot" style="display: none; position: relative;">
                 <fieldset>
-                    <legend><span class="number">2</span> Maximum Salary </legend>
-                    <label> Max Salary </label>
-                    <input class="required"  type="text" name="maxSalary" placeholder="Input the max Salary *">
+                    <legend><span class="number">2</span> Report Filter </legend>
+                    <label> Filter Sector </label>
+                    <select id="filterSector" name="filterSector">
+                        <option value ="malesHIV"> HIV Incidence (Males) </option>
+                        <option value ="femalesHIV"> HIV Incidence (Females) </option>
+                        <option value ="bothsex"> HIV Incidence (Both Sex) </option>
+                        <option value ="totalGDP"> Total GDP </option>
+                        <option value ="GDPPP"> GDP Per Capita </option>
+                        <option value ="population"> Total Population </option>
+                        <option value ="region"> Region </option>
+                        <option value ="income"> Income Class </option>
+                    </select>
+                    <label> Value Comparison </label>
+                    <select id="comparison" name="comparison">
+                        <option value ="1"> > </option>
+                        <option value ="2"> < </option>
+                        <option value ="3"> >= </option>
+                        <option value ="4"> <= </option>
+                        <option value ="5"> != </option>
+                        <option value ="6"> == </option>
+                        <option value ="7"> Contains </option>
+                        <option value ="8"> Does not contain </option>
+                        <option value ="9"> All the values </option>
+                    </select>
+                    <label> Filter Value </label>
+                        <input id = "filterValue" type="text" name="filterValue">
+                    <label>
                 </fieldset>
                 <div class="wrapButtonNext">
                 <button class="buttonNext" type="button" onClick="showHiddenPivot(1)"> 
                 <span class="glyphicon glyphicon-chevron-right"></span>
                 </button>
                 </div>
+            </div>
 
+            <!-- Third Table -  The characteristics are the same as the first one -->
+            <div class="formPivot" style="display: none; position: relative;">
+                <fieldset>
+                    <legend><span class="number">3</span> Aggregation </legend>
+                    <label> Operation </label>
+                    <select id="operation" name="operation">
+                        <option value ="1"> Sum of </option>
+                        <option value ="2"> Average of </option>
+                        <option value ="3"> Minimum of </option>
+                        <option value ="4"> Maximum of </option>
+                    </select>
+                    <label> aggregated Sector </label>
+                    <select id="aggregatedSector" name="aggregatedSector">
+                        <option value ="malesHIV"> HIV Incidence (Males) </option>
+                        <option value ="femalesHIV"> HIV Incidence (Females) </option>
+                        <option value ="bothsex"> HIV Incidence (Both Sex) </option>
+                        <option value ="totalGDP"> Total GDP </option>
+                        <option value ="GDPPP"> GDP Per Capita </option>
+                        <option value ="population"> Total Population </option>
+                    </select>
+                </fieldset>
+                <div class="wrapButtonNext">
+                <button class="buttonNext" type="button" onClick="showHiddenPivot(2)"> 
+                <span class="glyphicon glyphicon-chevron-right"></span>
+                </button>
+                </div>
             </div>
         </div>
+
+        <!-- Finally, there is a submit button to send data to the server-side to process it and make pivot table -->
         <div id="submitButton" style="clear:both; width: 50%; margin: 0 auto; display: none;">
             <input type="submit" value="Generate Pivot Table">
         </div>
@@ -106,61 +155,29 @@
     </div>
 
     <!-- Footer of the web page -->
-    <div id="footer">
-        <div class="footerWrap">
-            <div class="footerMenu">
-                <table border="0">
-                    <tbody>
-                        <tr>
-                            <th> Group info </th>
-                            <th> Reference </th>
-                            <th> General </th>
-                        </tr>
-                        <tr>
-                            <td>
-                                <ol>
-                                    <li> Tuong Pham - 849323 </li>
-                                    <li> Hasibulshamim Anik - 787496 </li>
-                                    <li> Joseph Arnaud - 759845 </li>
-                                </ol>
-                            </td>
-                            <td>
-                                <ol>
-                                    <li> Stack Overflow </li>
-                                    <li> W3Schools </li>
-                                    <li> AdobeColor </li>
-                                </ol>
-                            </td>
-                        </tr>
-
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
+    <div id="footerWrapper"> </div>
     <!-- Ending footer -->
     <script>
+
+        // This function scrolls to the top menu
+        function goToMenu(){
+            $('html, body').animate({ scrollTop: $('#menuWrapper').offset().top }, 'slow')
+        }
+
+        // Show the hidden table when click the next button or show to submit when click the last table
         function showHiddenPivot(indexForm) {
             // Check if all the required inputs are filled 
 
             var i = 0;
             var pivotForms = document.getElementsByClassName("formPivot");
-
-            var requiredInput = pivotForms[indexForm].getElementsByClassName("required");
-            for (j = 0; j < requiredInput.length; j++){
-                var valueInput = requiredInput[j].value;
-                if (valueInput == ''){
-                    nameInput = requiredInput[j].name;
-                    alert("The field " + nameInput + " is not entered. Please try again!");
-                    return;
-                }
-            }
-    
+            
+            // If clicking the last table, show the submit button
             if (indexForm == pivotForms.length - 1) {
                 document.getElementById("submitButton").style.display = "block";
                 return;
             }
 
+            // Otherwise, show the next table
             pivotForms[indexForm + 1].style.display = "inline-block";
         }
     </script>

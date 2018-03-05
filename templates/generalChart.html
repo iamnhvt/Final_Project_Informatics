@@ -1,0 +1,160 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+    <title> Test filter </title>
+    <meta http-equiv="content-type" content ="text/html"; charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/pivotTable.css">
+    <link rel="stylesheet" type="text/css" href="css/footer.css">
+    <link rel="stylesheet" type="text/css" href="css/menu.css">
+    <link rel="stylesheet" type="text/css" href="css/generalChart.css">
+
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="js/jQuery.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/chartLoader.js"></script>
+    <script>
+    var yearData;
+
+    $(document).ready(function(){
+        // Get The Json file from generatedData
+        $.getJSON("generatedData/yearData.json", function(result){
+            yearData = result;
+        })
+
+
+        // Get Two Script File
+        $.getScript("js/bubblechartProcessing.js");
+        $.getScript("js/geoChartProcessing.js");
+
+        // Get the templates for menu and footer
+        $.ajax({url: "templates/horizontalMenu.html", success: function(result){
+                $("#menuWrapper").html(result);
+                document.getElementById("menu").getElementsByTagName("li")[3].getElementsByTagName("a")[0].className = "selected";
+        }});
+
+        $.ajax({url: "templates/footer.html", success: function(result){
+                $("#footerWrapper").html(result);
+        }});
+
+
+        // When clicking on the button, scroll to the geochart
+        $(".scrollToGeoChart").click(function(){
+            $('html, body').animate({ scrollTop: $('#geochart').offset().top }, 'slow')
+        });
+
+    });
+
+    function goToMenu(){
+        $('html, body').animate({ scrollTop: $('#menuWrapper').offset().top }, 'slow')
+    }
+    
+    </script>
+</head>
+
+<body>
+    <div class="pageWrap">
+        <div id="menuWrapper"> </div>
+
+        <!-- Image center of the page -->
+        <div class="imageCenter">
+            <img src="images/bubblechart.png" alt="Form" width="273px" height="215px">
+        </div>
+
+        <!-- descriptionWrapper  -->
+        <div id = 'chart1title' class="descriptionWrapper">
+            <div style="color: #a2a2a2"> 
+                <h1> Bubble Chart </h1>
+                CORRELATION BETWEEN <strong style="color: #FF6D18"> HIV INCIDENCE </strong> AND <br>
+                <strong style = "color: #7A90E8"> GDP PER CAPITA </strong> ACROSS THE WORLD <BR>
+                FROM 1990 TO 2015
+            </div>
+        </div>
+
+        <!-- GDP Constraint selection wrapper -->
+        <div style="color: #9299A2; margin-left: 30px; font-size: 20px; display: block">
+            <label> GDP Constraints: </label>
+            <select style="outline: none; border-radius: 5px;" id="GDPConstraints" name="GDPConstraints">
+                <option value =""> No constraints </option>
+                <option value ="1000"> 1000 $</option>
+                <option value ="2500"> 2500 $ </option>
+                <option value ="4000"> 4000 $ </option>
+                <option value ="8000"> 8000 $ </option>
+                <option value ="20000"> 20000 $ </option>
+                <option value ="40000"> 40000 $ </option>
+                <option value ="60000"> 60000 $</option>
+                
+            </select>
+        </div>
+
+        <!-- Bubble Chart Wrapper -->
+        <div class="chartWrapper">
+            <!-- Chart Wrapper of Bubble Chart -->
+            <div style="width: 100%; height: 500px;" id="bubblechart"> </div>
+
+            <!-- Year input value -->
+            <input style="width: 50%; display: inline-block; margin: 10px auto;" id = "b1" value="0" type="range" name="points" min="0" max="25" step="0">
+            <div style="display: inline-block; margin: 10px" id="currentYear"> 1990 </div>
+            <div class="buttonSlideWrapper">
+                <button id="malesButton" class="buttonActive buttonSlide"> Males </button>
+                <button id="femalesButton" class="buttonSlide"> Females </button>
+            </div>
+        </div>
+
+        <button type="button" id = "scroll1" class="scrollToGeoChart"> <span class="glyphicon glyphicon-chevron-down"></span>
+        <div id="tooltip"> Scroll To Geo Chart </div> </button>
+        
+        <!-- Title of the Geo chart -->
+        <div id = 'chart2title' style="height: 200px" class="descriptionWrapper2">
+            <div> 
+                <h1> <strong style = "color: #7A90E8"> GEO CHART </strong> </h1> 
+                PRESENTING  <strong style="color: #FF6D18"> HIV INCIDENCE </strong> ACROSS THE WOLRD <br>
+                FROM 1990 TO 2015
+                <img style="position: absolute; top: 0; right: 20px" src="images/geochart.png" alt="Geo Chart" height = "200px" width = "200px">
+            </div>
+        </div>
+
+        <!-- Geo Chart Wrapper -->
+        <div class="chartWrapper">
+            <!-- Div element contains geo chart -->
+            <div style="width: 100%; height: 600px;" id="geochart">  </div>
+
+            <!-- Year input value -->
+            <input style="width: 40%; display: inline-block; margin: 10px auto;" id = "b2" value="0" type="range" name="points" min="0" max="25" step="0">
+            <div style="display: inline-block; margin: 10px" id="currentYearGeochart"> 1990 </div>
+            <div class="buttonSlideWrapper">
+                <button id="malesButtonGeochart" class="buttonActive buttonSlide"> Males </button>
+                <button id="femalesButtonGeochart" class="buttonSlide"> Females </button>
+                <div style="display: inline-block">
+
+                    <!-- Contient selection -->
+                    <label> Showed Continent </label>
+                    <select  id="continent" name="continent">
+                        <option value ="world"> World </option>
+                        <option value ="035"> East Asia and Pacific </option>
+                        <option value ="002"> Africa </option>
+                        <option value ="013"> Latin America and Caribbean </option>
+                        <option value ="143"> Europe and Central Asia </option>
+                        <option value ="034"> South Asia </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Footer of the web page -->
+    <div id="footerWrapper"> </div>
+
+    <!-- Ending footer -->
+</body>
+
+<script>
+    
+</script>
+
+</html>

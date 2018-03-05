@@ -3,14 +3,12 @@
 
 }
 
-
 .chartWrapper {
     position: relative;
     padding: 10px 20px;
     margin: auto;
     text-align: center;
     width: 100%;
-    height: 600px;
 }
 
 
@@ -23,7 +21,7 @@
     min-width: 100px;
     border-radius: 5px;
     background: white;
-    color: #26AAE8;
+    color: #6C3C99;
     border: 1px solid #3B2DE8;
 }
 
@@ -39,5 +37,39 @@
 }
 
 .chartWrapper .buttonActive {
-    background: #E2E2E2;
+    background: #7A91FF;
 }
+
+.scrollToGeoChart {
+    position: relative;
+    background: #fff;
+    border-radius: 50%;
+    display: block;
+    width: 60px;
+    height: 60px;
+    margin: 10px auto;
+    text-align: center;
+    outline: none;
+    border: 1px solid #7360FF;
+    color: #715A99;
+}
+
+.scrollToGeoChart:hover {
+    background: #7A91FF;
+}
+
+#tooltip {
+    position: absolute;
+    left: 80px;
+    top: 15px;
+    border: 1px solid #2C6FFF;
+    width: 200px;
+    display: none;
+    padding: 20px 0 ;
+}
+
+.scrollToGeoChart:hover #tooltip {
+    display: block;
+}
+
+

@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+
+<style>
+
+input {
+    width: 400px;
+    display: inline-block;
+}
+
+
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</head>
+
+
+
+<body>
+    <button onclick = "showInfo()" type="button"> Click to show info </button>
+    <button onclick = "showInfo2()" type="button"> Click to show info </button>
+    <div>
+        Please enter the image link in the form below: <br>
+        <form action='./cgi-bin/env.py' method="get">
+            <fieldset>
+            <input type="text" name="foo"/>
+            <input type="submit" value = "Submit"/>
+            </fieldset>
+            
+        </form>
+    </div>
+
+    <div id="show"> </div>
+    <div id="show2"> </div>
+
+</body>
+
+<script>
+    function showInfo(){
+        console.log(1);
+        var xhr = new XMLHttpRequest();
+        console.log(xhr.readyState);
+        xhr.onreadystatechange = function(){
+            if (this.readyState == 4 && this.status == 200){
+                document.getElementById("show").innerHTML = this.responseText;
+            }
+        }
+
+        xhr.open('GET', 'info.txt', true);
+        xhr.send();
+    }
+
+    function showInfo2(){
+        document.getElementById("show2").innerHTML = '''<div style="margin-top: 20px; width: 300px; height: 300px; border: 1px solid #ff0022;"> Hi </div>''';
+
+
+
+    }
+
+
+
+</script>
+
+
+</html>

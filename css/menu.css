@@ -16,6 +16,7 @@ ul#menu {
     padding: 25px 40px;
     display: block;
     text-decoration: none;
+    font-size: 18px;
 }
 
 .dropdown-content a {

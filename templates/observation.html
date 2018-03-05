@@ -1,0 +1,265 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+    <title> Test filter </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+     
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/form.css">
+    <link rel="stylesheet" type="text/css" href="css/footer.css">
+    <link rel="stylesheet" type="text/css" href="css/menu.css">
+    <link rel="stylesheet" type="text/css" href="css/observation.css">
+
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="js/jQuery.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/chartLoader.js"></script>
+
+    <script>
+    var hiv_vs_year_data;
+    var hiv_vs_region_data;
+    var hiv_vs_income_data;
+    var hiv_vs_population_data;
+    var sexStatistics;
+    $(document).ready(function(){
+        // Firstly, get the 5 generated Json file to make 5 charts
+        $.getJSON("generatedData/hiv_vs_year.json", function(result1){
+            hiv_vs_year_data = result1; 
+        })
+
+        $.getJSON("generatedData/hiv_vs_region.json", function(result2){
+            hiv_vs_region_data = result2; 
+        })
+
+        $.getJSON("generatedData/hiv_vs_income.json", function(result3){
+            hiv_vs_income_data = result3; 
+        })
+
+        $.getJSON("generatedData/hiv_vs_population.json", function(result4){
+            hiv_vs_population_data = result4; 
+        })
+
+        $.getJSON("generatedData/males_vs_females.json", function(result5){
+            sexStatistics = result5; 
+        })
+
+        // Get The script to draw the chart
+        $.getScript("js/drawChartObservation.js");
+
+
+        // Get template for menu and footer
+        $.ajax({url: "templates/horizontalMenu.html", success: function(result){
+                $("#menuWrapper").html(result);
+                document.getElementById("menu").getElementsByTagName("li")[4].getElementsByTagName("a")[0].className = "selected";
+        }});
+
+        $.ajax({url: "templates/footer.html", success: function(result){
+                $("#footerWrapper").html(result);
+        }})
+
+    });
+    
+    </script>
+</head>
+
+<body>
+    <div class="pageWrap">
+    <!-- Horizontal Menu of the web -->
+        <div id="menuWrapper"> </div>
+        <!-- Ending menu of the  web -->
+
+        <!-- Center Image of the Web -->
+        <div class="imageCenter">
+            <img src="../images/observation.png" alt="Form" width="200px" height="200px">
+        </div>
+
+        <!-- Description of the web -->
+        <div class="descriptionWrapper">
+            <div style="color: #a2a2a2"> 
+                <h1> OBSERVATIONS </h1>
+                THE COLLECTION OF ALL <strong style="color: #FF6D18"> INSIGHTFUL INVESTIGATION </strong> AND <br>
+                <strong style = "color: #7A90E8"> CONCISE CONCLUSIONS </strong> DERIVED FROM THE COLLECTED DATA <BR>
+            </div>
+        </div>
+
+
+        <!-- hiv_by_income_graph (Pie Chart) -->
+        <div class="observationWrapper">
+            <div class="chartWrapper">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <!-- description of the chart -->
+                            <div class="description">
+                                <div class="title"> Lower Middle Income Class Involves Most Of HIV Incidence,
+                                 Whereas High Income Class Is Least Affected. </div>
+                                <div class="text"> 
+                                We hypothesised that the low income groups would be the income groups most affected
+                    by the HIV virus. However, as we can see from the pie chart  lower middle income makes up the most of the HIV worldwide population with 36.8%, followed by 28.7% of Low Income Class.<br><br>
+                    Interestingly upper middle income represents a smaller portion of the population with HIV with 23.7%. <br><br>
+                    In saying that high incomes were as we predicted the least affected. From this chart, we can hypothesis that
+                    HIV Incidence is related to the development of the country, although there is a reversed trend between low and
+                    lower middle income. We then look at more charts to explain this difference.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <!-- Chart Wrapper -->
+                            <div id = "hiv_vs_income" class="chart">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- hiv_by_population_graph (Bar Chart) -->
+        <div class="observationWrapper">
+            <div class="chartWrapper">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <!-- Chart Wrapper -->
+                            <div id = "hiv_vs_population" class="chart">   
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <!-- description of the chart -->
+                            <div class="description">
+                                <div class="title"> High Population Is Least Affected By HIV, Whereas Low Population
+                                Makes up The Most. </div>
+                                <div class="text">
+                                    The lowest rates of HIV are seen in high population countries. However we saw no trend between HIV rates and a countries population other than this. As from the lowest populated countries to upper middle populated countries  there wasn't a tendency to increase or decrease. This could be because a countries population is relatively independent of other factors that would be more indicative of higher rates of HIV.  It could be because there are very few highly populated countries in the regions most heavily affected by HIV like Sub-Saharan Africa. Additionally,
+                                    some high population countries like China, America, India are also the high-GDP countries, this might explain
+                                    this interesting observation.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- hiv_vs_region_graph (Pie Chart) -->
+        <div class="observationWrapper">
+            <div class="chartWrapper">
+                <div class="container-fluid">
+                    <div class="row">
+
+                        <div class="col-md-5">
+                            <!-- description of the chart -->
+                            <div  class="description">
+                                <div class="title"> Sub-Saharan Makes Up The Most Of HIV Incidence In The World,
+                                Followed By The Asia Region. </div>
+                                <div class="text">
+                                This pie chart represents the population of the world affected by HIV relative to the
+                                regions that they come from. As we can see the region of the world most affected by HIV is
+                                Sub-Saharan Africa, followed by East Asia and Latin America. 79.2% of the population
+                                suffering from HIV Sub-Saharan Africa, which makes the region most heavily affected by the virus.
+                                For the other regions, there is no significant difference amongst them.
+                                <br><br>
+                                This trend can be observed clearly from the geochart in General Chart page, and might be explained by the
+                                fact that in Sub-Saharan Africa regions, the economic and medical development is still limited.   
+                                 </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-7">
+                            <!-- Chart Wrapper -->
+                            <div id = "hiv_vs_region" class="chart">
+                            </div>
+                        </div>
+
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- year_vs_HIV_graph (Line Chart) -->
+        <div class="observationWrapper">
+            <div class="chartWrapper">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div  class="col-md-8">
+                            <!-- Chart Wrapper -->
+                            <div id = "year_vs_HIV" class="chart">
+                            </div>
+                        </div>
+
+                        <div  class="col-md-4">
+                            <!-- description of the chart -->
+                            <div class="description">
+                                <div class="title"> HIV Incidence Of Males Is Positively Related To That Of Females. Average HIV Incidence
+                                reached its peak in 1996.
+                                </div>
+                                <div class="text">
+                                    It is clear that when HIV incidence for males increases, the statistics for females also increase, and vice versa.
+                                    Since HIV/AIDS comes from 3 sources: blood transmission, unprotected sex, and from pregnant women, the correlation between males and females HIV incidence implies that unprotected sex is the main reason for HIV/AIDS.
+                                    <br><br>
+                                    The second observation from this chart is HIV incidence rised significantly from 1990 to 1996, stagnating at its peak for 4 years, and then started decreasing. This can be explained by the fact that from the beginning of 21st century,
+                                    the world began recognizing the potential danger of this disease, and invested a lot of money to deal with it.
+
+                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+         <!-- Males_vs_Females_graph (Pie Chart) -->
+        <div class="observationWrapper">
+            <div class="chartWrapper">
+                <div class="container-fluid">
+                    <div class="row">
+
+                        <div class="col-md-5">
+                            <!-- description of the chart -->
+                            <div  class="description">
+                                <div class="title"> The Number Of Females Affected By HIV Almost Doubles That Of Males </div>
+                                <div class="text">
+                                It is surprising to us that the number of females affected by HIV over the past 26 years makes up
+                                to 63% of the total, whereas the pie chart for male is just 37%. This interesting information may be
+                                explained by the conclusion from previous chart that unprotected sex is the main reason for HIV/AIDS.
+                                <br><br>
+                                In particular, we can conclude that those women who work as prostitute might be the main and prevalent
+                                source of HIV/AIDS in our world today. Moreover, we can use this information to explain for the high
+                                HIV incidence in developing countries where the rate of "hooker" is high, and the usage of condom is
+                                not educated clearly.
+                                 </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-7">
+                            <!-- Chart Wrapper -->
+                            <div id = "males_vs_females" class="chart">
+                            </div>
+                        </div>   
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div  style="display: block; background: #FFA276; padding: 20px; text-align: center">
+            <h3 style = "color: #727272">
+             Want To Observe The Charts In More General Details? </h3>
+            <a style= "padding: 10px" href = "generalChart.html" type="button" class="btn btn-info"> Come To General Chart </a>
+        </div>
+    </div>
+
+    <!-- Footer of the web page -->
+    <div id="footerWrapper"> </div>
+    <!-- Ending footer -->
+</body>
+
+<script>
+    function goToMenu(){
+        $('html, body').animate({ scrollTop: $('#menuWrapper').offset().top }, 'slow')
+    }
+</script>
+
+</html>
